@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Srijan Bansal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: confident, concrete, operator-not-adviser; numbers do the talking.
+   IDEA: a transit map — a career drawn as one line with stations across India, Belgium and Singapore.
+   PICTURE: a thick route with 45-degree bends, station dots, interchange rings, labels in clear space.
+   COLOUR and TYPE: white ground, black ink, line colours red / blue / amber / green; Figtree 800 + Figtree.
+   LAYOUT: name and route share the first screen as one poster; then work, ventures, education, contact. */
+:root{color-scheme:light dark;
+  --bg:light-dark(#ffffff,#0e1116);--ink:light-dark(#111418,#eef1f5);--soft:light-dark(#5a6270,#9aa3b2);
+  --rule:light-dark(#e6e8ec,#232832);--card:light-dark(#f6f7f9,#151a22);
+  --red:#e6261f;--blue:#0a5cff;--amber:#ffb400;--green:#00a05a}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.draw{animation:none!important;stroke-dashoffset:0!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Figtree,system-ui,-apple-system,Segoe UI,sans-serif;overflow-x:clip}
+a{color:inherit}
+.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+nav .wrap{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center;padding:12px max(5vw,16px)}
+nav b{font-weight:800;margin-right:auto;font-size:17px}
+nav a{text-decoration:none;font-size:15px;color:var(--soft);padding:10px 0}
+nav a:hover,nav a:focus-visible{color:var(--ink)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(20px,4vw,56px);align-items:center}
+h1{font-weight:800;font-size:clamp(40px,6vw,68px);line-height:1.02;margin:0 0 14px;text-wrap:balance;letter-spacing:-.01em}
+h2{font-weight:800;font-size:clamp(30px,3.6vw,44px);line-height:1.05;margin:0 0 8px;text-wrap:balance}
+h3{font-weight:800;font-size:20px;line-height:1.2;margin:0 0 6px}
+.lede{font-size:19px;max-width:34em;margin:0 0 22px}
+.sub{color:var(--soft);max-width:60ch;margin:0 0 28px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;padding:0;list-style:none}
+.chips li{font-size:14px;font-weight:600;padding:6px 12px;border-radius:99px;border:2px solid currentColor}
+.c-red{color:var(--red)}.c-blue{color:var(--blue)}.c-amber{color:#b07800}.c-green{color:var(--green)}
+:root[data-theme=dark] .c-amber{color:var(--amber)}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .c-amber{color:var(--amber)}}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:10px;font-weight:600;text-decoration:none;border:2px solid var(--ink);background:none;color:var(--ink);font-size:16px;cursor:pointer;font-family:inherit}
+.btn.solid{background:var(--ink);color:var(--bg)}
+.map{position:relative;aspect-ratio:7/5;min-height:300px}
+.map svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.map text{font-family:Figtree,sans-serif;fill:var(--ink)}
+.map .yr{fill:var(--soft);font-size:13px;font-weight:600}
+.map .st{font-size:15px;font-weight:800}
+.draw{stroke-dasharray:2000;stroke-dashoffset:2000;animation:d 2.2s ease-out forwards}
+@keyframes d{to{stroke-dashoffset:0}}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--soft);margin-top:10px}
+.legend i{display:inline-block;width:22px;height:6px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--rule)}
+.stats div{padding:18px 16px 18px 0}
+.stats b{display:block;font-weight:800;font-size:clamp(28px,3.4vw,40px);line-height:1;white-space:nowrap}
+.stats span{font-size:14px;color:var(--soft)}
+.work{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:28px}
+.job{background:var(--card);border-radius:14px;padding:22px;border-left:8px solid var(--c)}
+.job .meta{font-size:14px;color:var(--soft);margin-bottom:10px}
+.job .num{font-weight:800;font-size:28px;line-height:1;margin:0 0 8px;white-space:nowrap;color:var(--c)}
+.job p{margin:0}
+.roles{margin-top:40px;display:grid;gap:0}
+.role{display:grid;grid-template-columns:10em minmax(0,1fr);gap:16px;padding:18px 0;border-top:1px solid var(--rule)}
+.role .when{color:var(--soft);font-size:15px;white-space:nowrap}
+.role ul{margin:6px 0 0;padding-left:18px}
+.role li{margin:4px 0}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;border:3px solid var(--c);background:var(--bg);margin-right:8px;vertical-align:-1px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,4vw,48px)}
+.list{list-style:none;padding:0;margin:16px 0 0}
+.list li{padding:14px 0;border-top:1px solid var(--rule)}
+.list li b{display:block}
+.contact{background:var(--ink);color:var(--bg)}
+.contact .btn{border-color:var(--bg);color:var(--bg)}
+.contact .btn.solid{background:var(--bg);color:var(--ink)}
+.contact p{max-width:52ch}
+.copied{font-size:14px;margin-left:6px;min-height:1em}
+footer{font-size:13px;color:var(--soft);padding:18px max(5vw,16px);border-top:1px solid var(--rule)}
+@media(max-width:900px){.hero{grid-template-columns:minmax(0,1fr)}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.work,.two{grid-template-columns:minmax(0,1fr)}.role{grid-template-columns:minmax(0,1fr);gap:2px}nav a{font-size:14px}.lede{font-size:17px}}
+</style>
+</head>
+<body>
+<nav aria-label="Sections"><div class="wrap"><b>Srijan Bansal</b><a href="#work">Work</a><a href="#path">Path</a><a href="#building">Building</a><a href="#education">Education</a><a href="#contact">Contact</a></div></nav>
+
+<header class="band"><div class="wrap hero">
+  <div>
+    <h1>Srijan Bansal</h1>
+    <p class="lede">Strategy manager who works next to CEOs and ships the plan. IIT Bombay engineer, IIM Bangalore MBA, startup co-founder. Based in Singapore.</p>
+    <ul class="chips" aria-label="What I work on">
+      <li class="c-red">Operating plans</li><li class="c-blue">Operating models</li><li class="c-amber">Cost &amp; procurement</li><li class="c-green">Data, AI &amp; deals</li>
+    </ul>
+    <div class="cta"><a class="btn solid" href="#contact">Get in touch</a><a class="btn" href="https://www.linkedin.com/in/srijanbansal1/">LinkedIn</a></div>
+  </div>
+  <figure style="margin:0">
+    <div class="map" id="map" role="img" aria-label="Career route map from IIT Bombay in 2017 to EY-Parthenon Singapore today"></div>
+    <figcaption class="legend"><span><i style="background:var(--green)"></i>Learning</span><span><i style="background:var(--amber)"></i>Building</span><span><i style="background:var(--blue)"></i>Finance &amp; risk</span><span><i style="background:var(--red)"></i>Strategy</span></figcaption>
+  </figure>
+</div></header>
+
+<section class="band" id="work"><div class="wrap">
+  <h2>Outcomes, not decks</h2>
+  <p class="sub">Selected programmes at EY-Parthenon, Singapore (May 2024 to now), where I was fast-tracked from Senior Associate to Manager.</p>
+  <div class="stats">
+    <div><b>$45M+</b><span>uplift, beverage CEO plan</span></div>
+    <div><b>$40M+</b><span>savings, Hongkong Land</span></div>
+    <div><b>$30M+</b><span>procurement savings</span></div>
+    <div><b>$15B+</b><span>valuation, DC diligence</span></div>
+  </div>
+  <div class="work" id="cards"></div>
+
+  <div class="roles" id="path">
+    <h2 style="margin:40px 0 10px">The path so far</h2>
+    <div id="roles"></div>
+  </div>
+</div></section>
+
+<section class="band" id="building" style="background:var(--card)"><div class="wrap two">
+  <div>
+    <h2>Building, not just advising</h2>
+    <p class="sub" style="margin:0">Before consulting I started a company. It is still the work I measure everything else against.</p>
+  </div>
+  <ul class="list" id="ventures"></ul>
+</div></section>
+
+<section class="band" id="education"><div class="wrap two">
+  <div>
+    <h2>Education</h2>
+    <ul class="list" id="edu"></ul>
+  </div>
+  <div>
+    <h2>Honours</h2>
+    <ul class="list" id="hon"></ul>
+  </div>
+</div></section>
+
+<section class="band contact" id="contact"><div class="wrap">
+  <h2>Let's talk</h2>
+  <p>I'm looking for roles where I own outcomes: founder's office, strategy and operations at AI-native companies, and investing. Open to India, Singapore and the UAE.</p>
+  <p style="margin:18px 0 6px"><b>Email</b> srijanbansal15@gmail.com</p>
+  <div class="cta" style="margin-top:14px">
+    <button class="btn solid" id="copy" type="button">Copy email</button>
+    <a class="btn" href="mailto:srijanbansal15@gmail.com">Email me</a>
+    <a class="btn" href="https://www.linkedin.com/in/srijanbansal1/">LinkedIn</a>
+    <span class="copied" id="copied" aria-live="polite"></span>
+  </div>
+</div></section>
+<footer>Srijan Bansal · Singapore</footer>
+
+<script>
+{
+const cards=[
+  {c:'--red',t:'CEO operating plan',w:'Thailand beverage company',n:'$45M+ uplift',p:'Partnered with the CEO on the annual operating plan for a $1.2B+ revenue target across 400K+ outlets: pricing, promotion and route-to-market moves across 50+ products and 10+ channels.'},
+  {c:'--blue',t:'Operating-model redesign',w:'Hongkong Land',n:'$40M+ savings',p:'Benchmarked 15+ global peers to design portfolio P&L ownership, group platforms and Centres of Excellence built to scale with $6B+ AUM growth, and clarified decision rights.'},
+  {c:'--amber',t:'Procurement transformation',w:'Global hotel chain',n:'$30M+ savings',p:'Unified multi-property spend into one category taxonomy, found savings through supplier consolidation and price harmonisation, reset team KPIs and ran the PMO cadence to deliver.'},
+  {c:'--green',t:'Data-centre commercial diligence',w:'Global private equity investor',n:'3GW+ model',p:'Built a supply-demand model across 10+ markets that underpinned a $15B+ valuation, backed by 20+ expert interviews on demand, competition and sensitivities.'},
+  {c:'--red',t:'Operating-model transformation',w:'SEA & Europe manufacturer',n:'$10M+ savings',p:'Benchmarked labour, factory and admin cost bases to surface 40+ initiatives, designed a centralised operating model and aligned leaders across countries on accountabilities.'},
+  {c:'--green',t:'Technology & AI roadmap',w:'Real estate group',n:'Board case',p:'Built the enterprise technology strategy and multi-year digital roadmap, including a board-level business case for a unified data platform and AI-driven investment insights.'}
+];
+const roles=[
+  {c:'--red',when:'2024 – now',t:'EY-Parthenon · Manager',where:'Singapore',pts:['Fast-tracked from Senior Associate in about two years','Works closest to CEOs and leadership teams on cross-country programmes']},
+  {c:'--red',when:'2023',t:'McKinsey & Company · Summer Associate',where:'India',pts:['Designed a 35+ FTE procurement organisation benchmarked against 7+ peers, with a category Centre of Excellence and shared services']},
+  {c:'--blue',when:'2021 – 2022',t:'American Express · Credit Risk Analyst',where:'India',pts:['Built SQL credit models on 35+ bureau parameters; portfolio strategy projected to add $1.8M+ a year while cutting risk 15%','Supervised 4+ cross-functional teams across 700K+ cardholders; Star Analyst award from the Senior VP']},
+  {c:'--amber',when:'2020 – 2021',t:'Cataconn · Co-founder',where:'India',pts:['Built and launched an ML-based tutor-matching platform from zero']}
+];
+const ventures=[
+  {t:'Co-founder, Cataconn (2020–21)',p:'ML-based tutor matching, built from zero. 300K+ site impressions in 5 months through SEO, 10+ tutors hired, 100+ teaching hours, 500+ students counselled.'},
+  {t:'Growth consultant, Geeta University (2022)',p:'Ran an INR 70L+ digital budget reaching 3.5Cr+ people; rebuilt the lead-to-admission funnel with 7+ corporate tie-ups for 1.5L+ leads and 2K+ intakes.'},
+  {t:'Senior coordinator, IIM Bangalore Forum',p:'Led a 30+ member team to run TEDxIIMB and deliver consulting support on 20+ corporate projects.'}
+];
+const edu=[
+  {t:'IIM Bangalore · MBA (2022–24)',p:'Merit scholarship; semester exchange at KU Leuven, Belgium.'},
+  {t:'IIT Bombay · B.Tech Mechanical Engineering, Computer Science minor (2017–21)',p:'CGPA 8.97/10; IIT-JEE rank 235 of 1.2M; MITACS Canada research scholar.'}
+];
+const hon=[
+  {t:'4× national winner, 7× national finalist',p:'Case competitions across strategy, operations, finance and entrepreneurship; national runner-up, IIMB B-Starters investor pitch.'},
+  {t:'Aditya Birla Scholarship',p:"Among India's top 35 potential leaders. Also KVPY scholar, Olympiad top 50 in Mathematics and Physics."},
+  {t:'MENSA Singapore',p:'Top 2% on a standardised intelligence assessment.'}
+];
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+document.getElementById('cards').innerHTML=cards.map(x=>`<article class="job" style="--c:var(${x.c})"><div class="num">${esc(x.n)}</div><h3>${esc(x.t)}</h3><div class="meta">${esc(x.w)}</div><p>${esc(x.p)}</p></article>`).join('');
+document.getElementById('roles').innerHTML=roles.map(x=>`<div class="role" style="--c:var(${x.c})"><div class="when"><span class="dot"></span>${esc(x.when)}</div><div><h3>${esc(x.t)}</h3><div style="color:var(--soft);font-size:15px">${esc(x.where)}</div><ul>${x.pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div></div>`).join('');
+const li=a=>a.map(x=>`<li><b>${esc(x.t)}</b>${esc(x.p)}</li>`).join('');
+document.getElementById('ventures').innerHTML=li(ventures);
+document.getElementById('edu').innerHTML=li(edu);
+document.getElementById('hon').innerHTML=li(hon);
+
+const map=document.getElementById('map');
+const stations=[
+  {x:.07,y:.80,n:'IIT Bombay',y0:'2017',col:'--green',lab:'r'},
+  {x:.30,y:.80,n:'Cataconn',y0:'2020',col:'--amber',lab:'b'},
+  {x:.47,y:.55,n:'Amex',y0:'2021',col:'--blue',lab:'r'},
+  {x:.47,y:.30,n:'IIM Bangalore',y0:'2022',col:'--green',lab:'l'},
+  {x:.66,y:.30,n:'McKinsey',y0:'2023',col:'--red',lab:'t'},
+  {x:.93,y:.12,n:'EY-Parthenon SG',y0:'2024',col:'--red',lab:'b',big:1}
+];
+const segs=[['--green',0,1],['--amber',1,2],['--blue',2,3],['--green',3,4],['--red',4,5]];
+const draw=()=>{
+  const W=map.clientWidth,H=map.clientHeight; if(!W||!H)return;
+  const small=W<460, lw=small?9:13, P=s=>[s.x*W,s.y*H];
+  let svg='';
+  segs.forEach(([c,a,b],i)=>{const [x1,y1]=P(stations[a]),[x2,y2]=P(stations[b]);
+    const dx=x2-x1,dy=y2-y1,d=Math.min(Math.abs(dx),Math.abs(dy));
+    const mx=x1+Math.sign(dx)*(Math.abs(dx)-d), my=y1;
+    svg+=`<path class="draw" style="animation-delay:${i*.25}s" d="M${x1} ${y1} L${mx} ${my} L${x2} ${y2}" fill="none" stroke="var(${c})" stroke-width="${lw}" stroke-linecap="round" stroke-linejoin="round"/>`;});
+  stations.forEach(s=>{const [x,y]=P(s), r=s.big?(small?11:15):(small?7:9);
+    svg+=`<circle cx="${x}" cy="${y}" r="${r+ (s.big?5:0)}" fill="var(--bg)" stroke="var(--ink)" stroke-width="${s.big?5:4}"/>`;
+    if(s.big)svg+=`<circle cx="${x}" cy="${y}" r="${r-3}" fill="var(--ink)"/>`;
+    const fs=small?12:15, off=r+12;
+    let tx=x,ty=y,anc='middle';
+    if(s.lab==='r'){tx=x+off;ty=y+4;anc='start'} else if(s.lab==='l'){tx=x-off;ty=y+4;anc='end'} else if(s.lab==='t'){ty=y-off-14} else {ty=y+off+fs}
+    if(s.big){anc='end';tx=x+r+4;}
+    svg+=`<text class="st" x="${tx}" y="${ty}" text-anchor="${anc}" style="font-size:${fs}px">${s.n}</text>`;
+    svg+=`<text class="yr" x="${tx}" y="${ty+(s.lab==='t'?-0:fs+2)}" text-anchor="${anc}" ${s.lab==='t'?`dy="${-fs-2}"`:''}>${s.y0}</text>`;
+  });
+  map.innerHTML=`<svg viewBox="0 0 ${W} ${H}" aria-hidden="true">${svg}</svg>`;
+};
+const ro=new ResizeObserver(draw); ro.observe(map);
+
+const copyBtn=document.getElementById('copy'),copied=document.getElementById('copied');
+copyBtn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText('srijanbansal15@gmail.com');copied.textContent='Copied'}catch(e){copied.textContent='Email: srijanbansal15@gmail.com'}});
+}
+</script>
+</body>
+</html>
