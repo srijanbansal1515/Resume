@@ -46,7 +46,7 @@ h3{font-weight:800;font-size:20px;line-height:1.2;margin:0 0 6px}
 .btn.solid{background:var(--ink);color:var(--bg)}
 .stairs{list-style:none;margin:0;padding:0;display:grid;gap:6px;--st:min(7.5%,44px)}
 .stairs li{margin-left:calc(var(--i)*var(--st))}
-.stairs a{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 12px;min-height:50px;padding:8px 14px;border-radius:8px;text-decoration:none;color:var(--ink);background:color-mix(in srgb,var(--c) 13%,var(--bg));border-left:5px solid var(--c);transition:background .2s,transform .2s;animation:grow .6s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i)*70ms);transform-origin:left center}
+.stairs a{display:flex;flex-direction:column;justify-content:center;gap:1px;min-height:50px;padding:8px 14px;border-radius:8px;text-decoration:none;color:var(--ink);background:color-mix(in srgb,var(--c) 13%,var(--bg));border-left:5px solid var(--c);transition:background .2s,transform .2s;animation:grow .6s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i)*70ms);transform-origin:left center}
 .stairs a:hover,.stairs a:focus-visible{background:color-mix(in srgb,var(--c) 26%,var(--bg));transform:translateX(3px)}
 .stairs b{font-weight:800;font-size:16px;line-height:1.25}
 .stairs span{font-size:13px;color:var(--soft);white-space:nowrap}
