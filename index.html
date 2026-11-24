@@ -52,7 +52,7 @@ h3{font-weight:800;font-size:20px;line-height:1.2;margin:0 0 6px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.step{animation:none}}
 .legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--soft);margin-top:12px}
 .legend i{display:inline-block;width:14px;height:14px;border-radius:4px;margin-right:6px;vertical-align:-2px}
-.work{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}
+.work{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:28px}
 .job{background:var(--card);border-radius:14px;padding:22px;border-top:8px solid var(--c)}
 .job .tag{font-size:14px;font-weight:600;color:var(--c)}
 .job .num{font-weight:800;font-size:clamp(30px,3.2vw,40px);line-height:1;margin:8px 0 10px;white-space:nowrap}
@@ -98,7 +98,7 @@ footer{font-size:13px;color:var(--soft);padding:18px max(5vw,16px);border-top:1p
 
 <section class="band" id="work"><div class="wrap">
   <h2>Selected work</h2>
-  <p class="sub">Three programmes from EY-Parthenon, Singapore (May 2024 to now), where I was fast-tracked from Senior Associate to Manager in about two years.</p>
+  <p class="sub">Four programmes from EY-Parthenon, Singapore (May 2024 to now), where I was fast-tracked from Senior Associate to Manager in about two years.</p>
   <div class="work" id="cards"></div>
 </div></section>
 
@@ -144,7 +144,8 @@ footer{font-size:13px;color:var(--soft);padding:18px max(5vw,16px);border-top:1p
 const cards=[
   {c:'--red',tag:'Revenue growth',n:'$45M+ uplift',t:'CEO operating plan',w:'Thailand beverage company',p:'Partnered with the CEO on the annual operating plan for a $1.2B+ revenue target across 400K+ outlets, shaping pricing, promotion and route-to-market moves across 50+ products and 10+ channels.'},
   {c:'--blue',tag:'Operating model',n:'$40M+ savings',t:'Operating-model redesign',w:'Hongkong Land',p:'Benchmarked 15+ global peers to design portfolio P&L ownership, group platforms and Centres of Excellence built to scale with $6B+ AUM growth, with clear decision rights.'},
-  {c:'--amber',tag:'Procurement',n:'$30M+ savings',t:'Procurement transformation',w:'Global hotel chain',p:'Unified multi-property spend into one category taxonomy, consolidated suppliers and harmonised prices, then reset team KPIs and ran the PMO cadence through delivery.'}
+  {c:'--amber',tag:'Procurement',n:'$30M+ savings',t:'Procurement transformation',w:'Global hotel chain',p:'Unified multi-property spend into one category taxonomy, consolidated suppliers and harmonised prices, then reset team KPIs and ran the PMO cadence through delivery.'},
+  {c:'--green',tag:'Technology & AI',n:'Board-level case',t:'Technology & AI roadmap',w:'Real estate group',p:'Built the enterprise technology strategy and multi-year digital roadmap, including a board-level business case for a unified data platform and AI-driven investment insights; prioritised use cases across the value chain and assessed platforms on economics and fit.'}
 ];
 const roles=[
   {c:'--red',when:'2024 – now',t:'EY-Parthenon · Manager',where:'Singapore',pts:['Fast-tracked from Senior Associate in about two years','Works closest to CEOs and leadership teams on cross-country programmes in consumer, real estate, infrastructure and private equity']},
