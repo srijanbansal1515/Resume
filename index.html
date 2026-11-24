@@ -79,7 +79,7 @@ footer{font-size:13px;color:var(--soft);padding:18px max(5vw,16px);border-top:1p
 </style>
 </head>
 <body>
-<nav aria-label="Sections"><div class="wrap"><b>Srijan Bansal</b><a href="#work">Work</a><a href="#path">Path</a><a href="#beyond">Beyond work</a><a href="#education">Education</a><a href="#contact">Contact</a></div></nav>
+<nav aria-label="Sections"><div class="wrap"><b>Srijan Bansal</b><a href="#work">Work</a><a href="#path">Path</a><a href="#education">Education</a><a href="#beyond">Interests</a><a href="#contact">Contact</a></div></nav>
 
 <header class="band"><div class="wrap hero">
   <div>
@@ -91,8 +91,8 @@ footer{font-size:13px;color:var(--soft);padding:18px max(5vw,16px);border-top:1p
     <div class="cta"><a class="btn solid" href="#contact">Get in touch</a><a class="btn" href="https://www.linkedin.com/in/srijanbansal1/">LinkedIn</a></div>
   </div>
   <figure style="margin:0">
-    <div class="stairs" id="stairs" role="img" aria-label="Career staircase: IIT Bombay 2017, Cataconn 2020, American Express 2021, Geeta University 2022, IIM Bangalore 2022, McKinsey 2023, EY-Parthenon Singapore 2024"></div>
-    <figcaption class="legend"><span><i style="background:var(--green)"></i>Learning</span><span><i style="background:var(--amber)"></i>Building &amp; growth</span><span><i style="background:var(--blue)"></i>Finance &amp; risk</span><span><i style="background:var(--red)"></i>Strategy</span></figcaption>
+    <div class="stairs" id="stairs" role="img" aria-label="Career staircase: Cataconn 2020, American Express 2021, Geeta University 2022, McKinsey 2023, EY-Parthenon Singapore 2024"></div>
+    <figcaption class="legend"><span><i style="background:var(--amber)"></i>Building &amp; growth</span><span><i style="background:var(--blue)"></i>Finance &amp; risk</span><span><i style="background:var(--red)"></i>Strategy</span></figcaption>
   </figure>
 </div></header>
 
@@ -107,23 +107,23 @@ footer{font-size:13px;color:var(--soft);padding:18px max(5vw,16px);border-top:1p
   <div class="roles" id="roles"></div>
 </div></section>
 
-<section class="band" id="beyond" style="background:var(--card)"><div class="wrap two">
-  <div>
-    <h2>Beyond work</h2>
-    <p class="sub" style="margin:0">Things I've led, built or competed in outside the day job.</p>
-  </div>
-  <ul class="list" id="extra"></ul>
-</div></section>
-
 <section class="band" id="education"><div class="wrap two">
   <div>
     <h2>Education</h2>
     <ul class="list" id="edu"></ul>
   </div>
   <div>
-    <h2>Honours</h2>
+    <h2>Notable achievements</h2>
     <ul class="list" id="hon"></ul>
   </div>
+</div></section>
+
+<section class="band" id="beyond" style="background:var(--card)"><div class="wrap two">
+  <div>
+    <h2>Life interests</h2>
+    <p class="sub" style="margin:0">What I do outside the day job.</p>
+  </div>
+  <ul class="list" id="extra"></ul>
 </div></section>
 
 <section class="band contact" id="contact"><div class="wrap">
@@ -150,23 +150,24 @@ const cards=[
 const roles=[
   {c:'--red',when:'2024 – now',t:'EY-Parthenon · Manager',where:'Singapore',pts:['Fast-tracked from Senior Associate in about two years','Works closest to CEOs and leadership teams on cross-country programmes in consumer, real estate, infrastructure and private equity']},
   {c:'--red',when:'2023',t:'McKinsey & Company · Summer Associate',where:'India',pts:['Designed a 35+ FTE procurement organisation benchmarked against 7+ peers, with a category Centre of Excellence and shared services']},
-  {c:'--green',when:'2022 – 2024',t:'IIM Bangalore · MBA',where:'India · exchange at KU Leuven, Belgium',pts:['Merit scholarship; senior coordinator of the IIM Bangalore Forum']},
   {c:'--amber',when:'2022',t:'Geeta University · Growth Consultant',where:'India',pts:['Ran an INR 70L+ digital marketing budget reaching 3.5Cr+ people','Rebuilt the lead-to-admission funnel with 7+ corporate tie-ups, generating 1.5L+ leads and 2K+ intakes']},
   {c:'--blue',when:'2021 – 2022',t:'American Express · Credit Risk Analyst',where:'India',pts:['Built SQL credit models on 35+ bureau parameters; portfolio strategy projected to add $1.8M+ a year while cutting risk 15%','Supervised 4+ cross-functional teams across 700K+ cardholders; Star Analyst award from the Senior VP']},
-  {c:'--amber',when:'2020 – 2021',t:'Cataconn · Co-founder',where:'India',pts:['Built and launched an ML-based tutor-matching platform from zero','300K+ site impressions in 5 months through SEO; hired 10+ tutors, delivered 100+ teaching hours and counselled 500+ students']},
-  {c:'--green',when:'2017 – 2021',t:'IIT Bombay · B.Tech',where:'India',pts:['Mechanical Engineering with a Computer Science minor']}
+  {c:'--amber',when:'2020 – 2021',t:'Cataconn · Co-founder',where:'India',pts:['Built and launched an ML-based tutor-matching platform from zero','300K+ site impressions in 5 months through SEO; hired 10+ tutors, delivered 100+ teaching hours and counselled 500+ students']}
 ];
 const extra=[
   {t:'IIM Bangalore Forum · Senior Coordinator',p:'Led a 30+ member team to organise TEDxIIMB and deliver consulting support across 20+ corporate projects.'},
   {t:'NGO work in education',p:'Volunteer work with non-profits in education.'},
-  {t:'Case and pitch competitions',p:'4× national winner and 7× national finalist across strategy, operations, finance and entrepreneurship; national runner-up, IIMB B-Starters investor pitch.'},
-  {t:'MENSA Singapore',p:'Member; top 2% on a standardised intelligence assessment.'}
+  {t:'Hockey',p:'On the field whenever I get the chance.'},
+  {t:'Adventure',p:'Always up for the next outdoor adventure.'}
 ];
 const edu=[
   {t:'IIM Bangalore · MBA (2022–24)',p:'Merit scholarship; semester exchange at KU Leuven, Belgium.'},
   {t:'IIT Bombay · B.Tech Mechanical Engineering, Computer Science minor (2017–21)',p:'CGPA 8.97/10; IIT-JEE rank 235 of 1.2M; MITACS Canada research scholar.'}
 ];
 const hon=[
+  {t:'CAT · 100 percentile',p:'Top of the national MBA entrance exam.'},
+  {t:'MENSA Singapore',p:'Top 2% on a standardised intelligence assessment.'},
+  {t:'Case and pitch competitions',p:'4× national winner and 7× national finalist across strategy, operations, finance and entrepreneurship; national runner-up, IIMB B-Starters investor pitch.'},
   {t:'Aditya Birla Scholarship · Finalist',p:"Finalist for one of India's most selective leadership scholarships."},
   {t:'KVPY Scholar',p:'Also Olympiad top 50 in India in Mathematics and Physics.'}
 ];
@@ -180,11 +181,9 @@ document.getElementById('hon').innerHTML=li(hon);
 
 const box=document.getElementById('stairs');
 const steps=[
-  {n:'IIT Bombay',s:'IIT Bombay',y:'2017',c:'--green',dark:0},
   {n:'Cataconn · co-founder',s:'Cataconn',y:'2020',c:'--amber',dark:1},
   {n:'American Express',s:'Amex',y:'2021',c:'--blue',dark:0},
   {n:'Geeta University',s:'Geeta Univ.',y:'2022',c:'--amber',dark:1},
-  {n:'IIM Bangalore',s:'IIM Bangalore',y:'2022',c:'--green',dark:0},
   {n:'McKinsey & Company',s:'McKinsey',y:'2023',c:'--red',dark:0},
   {n:'EY-Parthenon Singapore',s:'EY-Parthenon',y:'2024',c:'--red',dark:0}
 ];
