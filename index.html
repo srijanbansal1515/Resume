@@ -44,12 +44,18 @@ h3{font-weight:800;font-size:20px;line-height:1.2;margin:0 0 6px}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
 .btn{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:10px;font-weight:600;text-decoration:none;border:2px solid var(--ink);background:none;color:var(--ink);font-size:16px;cursor:pointer;font-family:inherit}
 .btn.solid{background:var(--ink);color:var(--bg)}
-.stairs{position:relative;aspect-ratio:6/5;min-height:340px}
-.stairs svg{position:absolute;inset:0;width:100%;height:100%}
-.stairs text{font-family:Figtree,sans-serif}
-.step{transform-box:fill-box;transform-origin:left center;animation:grow .7s cubic-bezier(.2,.7,.2,1) both}
-@keyframes grow{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.step{animation:none}}
+.stairs{list-style:none;margin:0;padding:0;display:grid;gap:6px;--st:min(7.5%,44px)}
+.stairs li{margin-left:calc(var(--i)*var(--st))}
+.stairs a{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 12px;min-height:50px;padding:8px 14px;border-radius:8px;text-decoration:none;color:var(--ink);background:color-mix(in srgb,var(--c) 13%,var(--bg));border-left:5px solid var(--c);transition:background .2s,transform .2s;animation:grow .6s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:calc(var(--i)*70ms);transform-origin:left center}
+.stairs a:hover,.stairs a:focus-visible{background:color-mix(in srgb,var(--c) 26%,var(--bg));transform:translateX(3px)}
+.stairs b{font-weight:800;font-size:16px;line-height:1.25}
+.stairs span{font-size:13px;color:var(--soft);white-space:nowrap}
+.stairs .now b::after{content:"  ↗";color:var(--c)}
+@keyframes grow{from{transform:scaleX(.2);opacity:0}to{transform:scaleX(1);opacity:1}}
+@keyframes flash{0%,100%{background:transparent}30%{background:color-mix(in srgb,var(--blue) 14%,transparent)}}
+.flash{animation:flash 1.6s ease}
+.hint{font-size:13px;color:var(--soft);margin:0 0 8px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.stairs a{animation:none}.flash{animation:none;outline:3px solid var(--blue)}}
 .legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--soft);margin-top:12px}
 .legend i{display:inline-block;width:14px;height:14px;border-radius:4px;margin-right:6px;vertical-align:-2px}
 .work{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:28px}
@@ -75,7 +81,7 @@ h3{font-weight:800;font-size:20px;line-height:1.2;margin:0 0 6px}
 .copied{font-size:14px;align-self:center;min-height:1em}
 footer{font-size:13px;color:var(--soft);padding:18px max(5vw,16px);border-top:1px solid var(--rule)}
 @media(max-width:900px){.hero{grid-template-columns:minmax(0,1fr)}.work{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:600px){.two{grid-template-columns:minmax(0,1fr)}.role{grid-template-columns:minmax(0,1fr);gap:2px}nav a{font-size:14px}.lede{font-size:17px}.stairs{aspect-ratio:auto;height:400px}}
+@media(max-width:600px){.two{grid-template-columns:minmax(0,1fr)}.role{grid-template-columns:minmax(0,1fr);gap:2px}nav a{font-size:14px}.lede{font-size:17px}.stairs{--st:6%}.stairs b{font-size:15px}}
 </style>
 </head>
 <body>
@@ -91,8 +97,9 @@ footer{font-size:13px;color:var(--soft);padding:18px max(5vw,16px);border-top:1p
     <div class="cta"><a class="btn solid" href="#contact">Get in touch</a><a class="btn" href="https://www.linkedin.com/in/srijanbansal1/">LinkedIn</a></div>
   </div>
   <figure style="margin:0">
-    <div class="stairs" id="stairs" role="img" aria-label="Career staircase: Cataconn 2020, American Express 2021, Geeta University 2022, McKinsey 2023, EY-Parthenon Singapore 2024"></div>
-    <figcaption class="legend"><span><i style="background:var(--amber)"></i>Building &amp; growth</span><span><i style="background:var(--blue)"></i>Finance &amp; risk</span><span><i style="background:var(--red)"></i>Strategy</span></figcaption>
+    <p class="hint">Career so far, one step at a time. Tap a step to jump to it.</p>
+    <ol class="stairs" id="stairs" reversed aria-label="Career steps, latest first"></ol>
+    <figcaption class="legend"><span><i style="background:var(--green)"></i>Learning</span><span><i style="background:var(--amber)"></i>Internship / part-time</span><span><i style="background:var(--blue)"></i>Full-time role</span></figcaption>
   </figure>
 </div></header>
 
@@ -148,11 +155,11 @@ const cards=[
   {c:'--green',tag:'Technology & AI',n:'Board-level case',t:'Technology & AI roadmap',w:'Real estate group',p:'Built the enterprise technology strategy and multi-year digital roadmap, including a board-level business case for a unified data platform and AI-driven investment insights; prioritised use cases across the value chain and assessed platforms on economics and fit.'}
 ];
 const roles=[
-  {c:'--red',when:'2024 – now',t:'EY-Parthenon · Manager',where:'Singapore',pts:['Fast-tracked from Senior Associate in about two years','Works closest to CEOs and leadership teams on cross-country programmes in consumer, real estate, infrastructure and private equity']},
-  {c:'--red',when:'2023',t:'McKinsey & Company · Summer Associate',where:'India',pts:['Designed a 35+ FTE procurement organisation benchmarked against 7+ peers, with a category Centre of Excellence and shared services']},
-  {c:'--amber',when:'2022',t:'Geeta University · Growth Consultant',where:'India',pts:['Ran an INR 70L+ digital marketing budget reaching 3.5Cr+ people','Rebuilt the lead-to-admission funnel with 7+ corporate tie-ups, generating 1.5L+ leads and 2K+ intakes']},
-  {c:'--blue',when:'2021 – 2022',t:'American Express · Credit Risk Analyst',where:'India',pts:['Built SQL credit models on 35+ bureau parameters; portfolio strategy projected to add $1.8M+ a year while cutting risk 15%','Supervised 4+ cross-functional teams across 700K+ cardholders; Star Analyst award from the Senior VP']},
-  {c:'--amber',when:'2020 – 2021',t:'Cataconn · Co-founder',where:'India',pts:['Built and launched an ML-based tutor-matching platform from zero','300K+ site impressions in 5 months through SEO; hired 10+ tutors, delivered 100+ teaching hours and counselled 500+ students']}
+  {id:'ey',c:'--blue',when:'2024 – now',t:'EY-Parthenon · Manager',where:'Singapore',pts:['Fast-tracked from Senior Associate in about two years','Works closest to CEOs and leadership teams on cross-country programmes in consumer, real estate, infrastructure and private equity']},
+  {id:'mck',c:'--amber',when:'2023',t:'McKinsey & Company · Summer Associate',where:'India',pts:['Designed a 35+ FTE procurement organisation benchmarked against 7+ peers, with a category Centre of Excellence and shared services']},
+  {id:'gu',c:'--amber',when:'2022',t:'Geeta University · Growth Consultant (part-time)',where:'India',pts:['Ran an INR 70L+ digital marketing budget reaching 3.5Cr+ people','Rebuilt the lead-to-admission funnel with 7+ corporate tie-ups, generating 1.5L+ leads and 2K+ intakes']},
+  {id:'amex',c:'--blue',when:'2021 – 2022',t:'American Express · Credit Risk Analyst',where:'India',pts:['Built SQL credit models on 35+ bureau parameters; portfolio strategy projected to add $1.8M+ a year while cutting risk 15%','Supervised 4+ cross-functional teams across 700K+ cardholders; Star Analyst award from the Senior VP']},
+  {id:'cat',c:'--blue',when:'2020 – 2021',t:'Cataconn · Co-founder',where:'India',pts:['Built and launched an ML-based tutor-matching platform from zero','300K+ site impressions in 5 months through SEO; hired 10+ tutors, delivered 100+ teaching hours and counselled 500+ students']}
 ];
 const extra=[
   {t:'TEDxIIMB · Core team member',p:'Part of the core team that organised TEDxIIMB at IIM Bangalore.'},
@@ -161,8 +168,8 @@ const extra=[
   {t:'Adventure',p:'Recently completed the Annapurna Base Camp trek in winter.'}
 ];
 const edu=[
-  {t:'IIM Bangalore · MBA (2022–24)',p:'Merit scholarship; semester exchange at KU Leuven, Belgium.'},
-  {t:'IIT Bombay · B.Tech Mechanical Engineering, Computer Science minor (2017–21)',p:'CGPA 8.97/10; IIT-JEE rank 235 of 1.2M; MITACS Canada research scholar.'}
+  {id:'edu-iimb',t:'IIM Bangalore · MBA (2022–24)',p:'Merit scholarship; semester exchange at KU Leuven, Belgium.'},
+  {id:'edu-iitb',t:'IIT Bombay · B.Tech Mechanical Engineering, Computer Science minor (2017–21)',p:'CGPA 8.97/10; IIT-JEE rank 235 of 1.2M; MITACS Canada research scholar.'}
 ];
 const hon=[
   {t:'CAT · 100 percentile',p:'Top of the national MBA entrance exam.'},
@@ -173,38 +180,24 @@ const hon=[
 ];
 const esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 document.getElementById('cards').innerHTML=cards.map(x=>`<article class="job" style="--c:var(${x.c})"><div class="tag">${esc(x.tag)}</div><div class="num">${esc(x.n)}</div><h3>${esc(x.t)}</h3><div class="meta">${esc(x.w)}</div><p>${esc(x.p)}</p></article>`).join('');
-document.getElementById('roles').innerHTML=roles.map(x=>`<div class="role" style="--c:var(${x.c})"><div class="when"><span class="sq"></span>${esc(x.when)}</div><div><h3>${esc(x.t)}</h3><div style="color:var(--soft);font-size:15px">${esc(x.where)}</div><ul>${x.pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div></div>`).join('');
-const li=a=>a.map(x=>`<li><b>${esc(x.t)}</b>${esc(x.p)}</li>`).join('');
+document.getElementById('roles').innerHTML=roles.map(x=>`<div class="role" id="role-${x.id}" style="--c:var(${x.c})"><div class="when"><span class="sq"></span>${esc(x.when)}</div><div><h3>${esc(x.t)}</h3><div style="color:var(--soft);font-size:15px">${esc(x.where)}</div><ul>${x.pts.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></div></div>`).join('');
+const li=a=>a.map(x=>`<li${x.id?` id="${x.id}"`:''}><b>${esc(x.t)}</b>${esc(x.p)}</li>`).join('');
 document.getElementById('extra').innerHTML=li(extra);
 document.getElementById('edu').innerHTML=li(edu);
 document.getElementById('hon').innerHTML=li(hon);
 
-const box=document.getElementById('stairs');
 const steps=[
-  {n:'Cataconn · co-founder',s:'Cataconn',y:'2020',c:'--amber',dark:1},
-  {n:'American Express',s:'Amex',y:'2021',c:'--blue',dark:0},
-  {n:'Geeta University',s:'Geeta Univ.',y:'2022',c:'--amber',dark:1},
-  {n:'McKinsey & Company',s:'McKinsey',y:'2023',c:'--red',dark:0},
-  {n:'EY-Parthenon Singapore',s:'EY-Parthenon',y:'2024',c:'--red',dark:0}
+  {n:'IIT Bombay · B.Tech',g:'Mumbai, India',p:'2017–2021',c:'--green',to:'edu-iitb'},
+  {n:'Cataconn · Co-founder',g:'India',p:'2020–2021',c:'--blue',to:'role-cat'},
+  {n:'American Express · Credit Risk Analyst',g:'India',p:'2021–2022',c:'--blue',to:'role-amex'},
+  {n:'Geeta University · Growth Consultant',g:'India',p:'2022',c:'--amber',to:'role-gu'},
+  {n:'IIM Bangalore · MBA',g:'Bengaluru, India',p:'2022–2024',c:'--green',to:'edu-iimb'},
+  {n:'McKinsey & Company · Summer Associate',g:'India',p:'2023',c:'--amber',to:'role-mck'},
+  {n:'EY-Parthenon · Manager',g:'Singapore',p:'2024–now',c:'--blue',to:'role-ey',now:1}
 ];
-const draw=()=>{
-  const W=box.clientWidth,H=box.clientHeight; if(!W||!H)return;
-  const N=steps.length, gap=6, h=(H-gap*(N-1))/N, dx=Math.min(W*.075,46), small=W<440;
-  let svg='';
-  steps.forEach((s,i)=>{
-    const y=H-(i+1)*h-i*gap, x=i*dx, w=W-x, tread=Math.max(5,h*.16);
-    const fg=s.dark?'#1a1200':'#ffffff', fs=small?14:Math.min(17,h*.36), ys=small?12:13;
-    const label=(W-x)<300?s.s:s.n;
-    svg+=`<g class="step" style="animation-delay:${i*.09}s">`
-      +`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="7" fill="var(${s.c})"/>`
-      +`<rect x="${x}" y="${y}" width="${w}" height="${tread}" rx="3" fill="#fff" opacity=".28"/>`
-      +`<text x="${x+14}" y="${y+h/2+fs*.36}" fill="${fg}" font-weight="800" font-size="${fs}">${esc(label)}</text>`
-      +`<text x="${W-12}" y="${y+h/2+ys*.36}" fill="${fg}" font-weight="600" font-size="${ys}" text-anchor="end" opacity=".9">${esc(s.y)}</text>`
-      +`</g>`;
-  });
-  box.innerHTML=`<svg viewBox="0 0 ${W} ${H}" aria-hidden="true">${svg}</svg>`;
-};
-const ro=new ResizeObserver(draw); ro.observe(box);
+const box=document.getElementById('stairs');
+box.innerHTML=steps.map((x,i)=>({x,i})).reverse().map(({x,i})=>`<li style="--i:${i};--c:var(${x.c})"><a href="#${x.to}" class="${x.now?'now':''}" data-to="${x.to}"><b>${esc(x.n)}</b><span>${esc(x.g)} · ${esc(x.p)}</span></a></li>`).join('');
+box.addEventListener('click',e=>{const a=e.target.closest('a[data-to]');if(!a)return;const t=document.getElementById(a.dataset.to);if(!t)return;e.preventDefault();t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'center'});t.classList.remove('flash');void t.offsetWidth;t.classList.add('flash');try{history.replaceState(null,'','#'+a.dataset.to)}catch(_){}});
 
 const copied=document.getElementById('copied');
 document.getElementById('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText('srijanbansal15@gmail.com');copied.textContent='Copied'}catch(e){copied.textContent='srijanbansal15@gmail.com'}});
